@@ -1,0 +1,62 @@
+<mxfile host="app.diagrams.net" agent="Claude" version="24.0.0" type="device">
+  <diagram id="blob-access" name="Blob Access Paths">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1420" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title1" value="Blob Storage Upload / Download — Access Paths &amp; Permission Scope" style="text;html=1;fontSize=20;fontStyle=1;align=left;verticalAlign=middle;fontColor=#101828;fontFamily=Helvetica;" vertex="1" parent="1"><mxGeometry x="30" y="12" width="900" height="30" as="geometry" /></mxCell>
+        <mxCell id="title2" value="Every path terminates at Blob Storage, which has no public network exposure under either identity model" style="text;html=1;fontSize=12;align=left;verticalAlign=middle;fontColor=#667085;" vertex="1" parent="1"><mxGeometry x="30" y="40" width="900" height="20" as="geometry" /></mxCell>
+
+        <mxCell id="zoneM365" value="MICROSOFT 365 / ENTRA ID TENANT" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;strokeColor=#6264A7;fillColor=#FBFAFE;verticalAlign=top;align=left;spacingLeft=14;spacingTop=10;fontColor=#6264A7;fontStyle=1;fontSize=11;" vertex="1" parent="1"><mxGeometry x="30" y="80" width="300" height="480" as="geometry" /></mxCell>
+
+        <mxCell id="nEmp" value="Employee User" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://app.diagrams.net/img/lib/azure2/identity/Users.svg;fontSize=11;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1"><mxGeometry x="60" y="120" width="56" height="56" as="geometry" /></mxCell>
+        <mxCell id="nEmpSub" value="internal Entra ID identity" style="text;html=1;fontSize=8;align=center;verticalAlign=top;fontColor=#667085;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="30" y="200" width="116" height="14" as="geometry" /></mxCell>
+
+        <mxCell id="nTeams" value="Microsoft Teams" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://icons.diagrams.net/assets/office365/1/Teams.svg;fontSize=11;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1"><mxGeometry x="200" y="120" width="56" height="56" as="geometry" /></mxCell>
+        <mxCell id="nTeamsSub" value="Tab + chat" style="text;html=1;fontSize=8;align=center;verticalAlign=top;fontColor=#667085;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="185" y="200" width="86" height="14" as="geometry" /></mxCell>
+
+        <mxCell id="nGuest" value="Guest User" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://app.diagrams.net/img/lib/azure2/identity/Users.svg;fontSize=11;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1"><mxGeometry x="60" y="420" width="56" height="56" as="geometry" /></mxCell>
+        <mxCell id="nGuestSub" value="B2B guest identity&#10;no Teams access" style="text;html=1;fontSize=8;align=center;verticalAlign=top;fontColor=#667085;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="30" y="500" width="116" height="28" as="geometry" /></mxCell>
+
+        <mxCell id="zoneAzure" value="AZURE SUBSCRIPTION — CUSTOMER VNET  ·  no public network access anywhere" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;dashed=1;dashPattern=8 4;strokeColor=#0078D4;fillColor=#F7FBFF;verticalAlign=top;align=left;spacingLeft=14;spacingTop=10;fontColor=#0078D4;fontStyle=1;fontSize=11;" vertex="1" parent="1"><mxGeometry x="420" y="80" width="960" height="480" as="geometry" /></mxCell>
+
+        <mxCell id="snetApp" value="SUBNET · snet-app" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;dashed=1;strokeColor=#9DA3AE;fillColor=#FFFFFF;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontColor=#5a6580;fontStyle=1;fontSize=9;" vertex="1" parent="1"><mxGeometry x="450" y="120" width="160" height="150" as="geometry" /></mxCell>
+        <mxCell id="nAppSvc" value="App Service" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://app.diagrams.net/img/lib/azure2/compute/App_Services.svg;fontSize=11;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1"><mxGeometry x="478" y="148" width="56" height="56" as="geometry" /></mxCell>
+        <mxCell id="nAppSvcSub" value="hosts the Graph API&#10;app registration" style="text;html=1;fontSize=8;align=center;verticalAlign=top;fontColor=#667085;fontFamily=Courier New;" vertex="1" parent="1"><mxGeometry x="450" y="228" width="160" height="28" as="geometry" /></mxCell>
+
+        <mxCell id="snetSftp" value="SUBNET · snet-sftp  (PROPOSED — not provisioned)" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;dashed=1;dashPattern=4 3;strokeColor=#B8860B;fillColor=#FFFBF2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontColor=#8a6d00;fontStyle=1;fontSize=9;" vertex="1" parent="1"><mxGeometry x="450" y="400" width="370" height="150" as="geometry" /></mxCell>
+        <mxCell id="nSftp" value="SFTP Endpoint?" style="rounded=1;whiteSpace=wrap;html=1;arcSize=12;dashed=1;dashPattern=4 3;fillColor=#FFF4E5;strokeColor=#B8860B;strokeWidth=1.5;fontColor=#8a6d00;fontSize=11;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="478" y="438" width="130" height="56" as="geometry" /></mxCell>
+        <mxCell id="nSftpSub" value="proposed — pending&#10;architecture decision" style="text;html=1;fontSize=8;align=center;verticalAlign=top;fontColor=#8a6d00;fontFamily=Courier New;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="478" y="498" width="130" height="28" as="geometry" /></mxCell>
+
+        <mxCell id="snetData" value="SUBNET · snet-data  (Private Endpoint)" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;dashed=1;strokeColor=#9DA3AE;fillColor=#FFFFFF;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontColor=#5a6580;fontStyle=1;fontSize=9;" vertex="1" parent="1"><mxGeometry x="900" y="120" width="420" height="300" as="geometry" /></mxCell>
+        <mxCell id="nPE" value="Private Endpoint" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://app.diagrams.net/img/lib/azure2/networking/Private_Endpoint.svg;fontSize=10;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1"><mxGeometry x="930" y="155" width="48" height="48" as="geometry" /></mxCell>
+        <mxCell id="nBlob" value="Blob Storage" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://app.diagrams.net/img/lib/azure2/storage/Storage_Accounts.svg;fontSize=11;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1"><mxGeometry x="1070" y="148" width="56" height="56" as="geometry" /></mxCell>
+        <mxCell id="nBlobSub" value="public network access: Disabled&#10;access only via Private Endpoint" style="text;html=1;fontSize=8;align=center;verticalAlign=top;fontColor=#bf4520;fontFamily=Courier New;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1010" y="228" width="180" height="28" as="geometry" /></mxCell>
+
+        <mxCell id="nGraphIcon" value="Microsoft Graph API" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=none;imageAspect=0;aspect=fixed;image=https://app.diagrams.net/img/lib/azure2/identity/App_Registrations.svg;fontSize=11;fontStyle=1;fontColor=#8a6d00;" vertex="1" parent="1"><mxGeometry x="338" y="128" width="42" height="42" as="geometry" /></mxCell>
+        <mxCell id="nGraphIconSub" value="Files.ReadWrite&#10;(delegated)" style="text;html=1;fontSize=8;align=center;verticalAlign=top;fontColor=#8a6d00;fontFamily=Courier New;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="314" y="198" width="90" height="28" as="geometry" /></mxCell>
+
+        <mxCell id="scopeBadge2" value="PROPOSED — SFTP for guest access. Permission model (local user vs. identity-based RBAC) not yet decided." style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;dashed=1;dashPattern=4 3;fillColor=#FFF4E5;strokeColor=#B8860B;strokeWidth=1;fontColor=#8a6d00;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="880" y="440" width="220" height="56" as="geometry" /></mxCell>
+
+        <mxCell id="scopeBadge3" value="App Service managed identity — RBAC: Storage Blob Data Contributor" style="rounded=1;whiteSpace=wrap;html=1;arcSize=30;fillColor=#EAF6EC;strokeColor=#2e8b57;strokeWidth=1;fontColor=#1f6b3f;fontSize=9;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="900" y="100" width="200" height="40" as="geometry" /></mxCell>
+
+        <mxCell id="e1" value="opens Tab" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=9;fontColor=#1A1A1A;strokeColor=#2d3142;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#FBFAFE;" edge="1" parent="1" source="nEmp" target="nTeams"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e2" value="upload / download" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=9;fontColor=#bf4520;fontStyle=1;strokeColor=#bf4520;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#F7FBFF;" edge="1" parent="1" source="nTeams" target="nAppSvc"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e3" value="upload / download — managed identity" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;fontSize=9;fontColor=#bf4520;fontStyle=1;strokeColor=#bf4520;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="nAppSvc" target="nBlob"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e4" value="SFTP (port 22) — proposed" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;dashed=1;dashPattern=4 3;fontSize=9;fontColor=#8a6d00;fontStyle=1;strokeColor=#B8860B;strokeWidth=1.5;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;labelBackgroundColor=#FBFAFE;" edge="1" parent="1" source="nGuest" target="nSftp"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="e6" value="upload / download — concept under review" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;jettySize=auto;orthogonalLoop=1;dashed=1;dashPattern=4 3;fontSize=9;fontColor=#8a6d00;fontStyle=1;strokeColor=#B8860B;strokeWidth=1.8;endArrow=block;endFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.75;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="nSftp" target="nBlob"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="860" y="466" /><mxPoint x="860" y="296" /></Array></mxGeometry></mxCell>
+
+        <mxCell id="e7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;dashed=1;strokeColor=#9DA3AE;strokeWidth=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="nPE" target="nBlob"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="legend1" value="" style="endArrow=none;html=1;strokeColor=#bf4520;strokeWidth=1.8;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="450" y="620" as="sourcePoint" /><mxPoint x="486" y="620" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="legend1t" value="Employee path — Graph API permission" style="text;html=1;fontSize=11;align=left;verticalAlign=middle;fontColor=#667085;" vertex="1" parent="1"><mxGeometry x="496" y="608" width="260" height="24" as="geometry" /></mxCell>
+        <mxCell id="legend2" value="" style="endArrow=none;html=1;dashed=1;dashPattern=4 3;strokeColor=#B8860B;strokeWidth=1.8;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="820" y="620" as="sourcePoint" /><mxPoint x="856" y="620" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="legend2t" value="Guest path — SFTP (proposed, not decided)" style="text;html=1;fontSize=11;align=left;verticalAlign=middle;fontColor=#667085;" vertex="1" parent="1"><mxGeometry x="866" y="608" width="280" height="24" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
