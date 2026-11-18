@@ -1,0 +1,2 @@
+[System.Environment]::SetEnvironmentVariable("REQUESTS_CA_BUNDLE", "$HOME\your-cert.cer", "User")
+[System.Environment]::SetEnvironmentVariable("SSL_CERT_FILE", "$HOME\your-cert.cer", "User")
