@@ -44,3 +44,18 @@ $body = @{
 } | ConvertTo-Json -Depth 5
 
 Invoke-RestMethod -Uri "$appUrl/query/payload" -Method POST -Body $body -ContentType "application/json"
+{
+  "case_id": "CASE123",
+  "opportunity_name": "Test Opportunity",
+  "documents": {
+    "im": "CASE123/im.pdf",
+    "financial_model": "CASE123/financial_model.xlsx",
+    "gdg": "CASE123/gdg_policy.pdf",
+    "tas": "CASE123/tas.pdf",
+    "otc_template": "samples/BLANK OTC TEMPLATE.docx"
+  },
+  "include_tas": true,
+  "resume": false,
+  "save_docx": true,
+  "instructions": null
+}
