@@ -1,2 +1,21 @@
 [System.Environment]::SetEnvironmentVariable("REQUESTS_CA_BUNDLE", "$HOME\your-cert.cer", "User")
 [System.Environment]::SetEnvironmentVariable("SSL_CERT_FILE", "$HOME\your-cert.cer", "User")
+
+
+Azure OpenAI / Foundry direct test (the main one — proves your model deployment/endpoint/auth are correct):
+$endpoint   = "<your AZURE_AI_PROJECT_ENDPOINT value>"
+$deployment = "gpt-4o"
+$token = az account get-access-token --resource https://cognitiveservices.azure.com --query accessToken -o tsv
+
+$headers = @{ Authorization = "Bearer $token"; "Content-Type" = "application/json" }
+$body = @{
+    messages   = @(@{ role = "user"; content = "Reply with exactly: connection OK" })
+    max_tokens = 10
+} | ConvertTo-Json -Depth 5
+
+Invoke-RestMethod -Uri "$endpoint/openai/deployments/$deployment/chat/completions?api-version=2024-08-01-preview"
+-Method POST -Headers $headers -Body $body
+
+Azure AI Search direct test (only relevant_INDEX_BACKEND=azure_search, not local):
+$searchEndpoint = "<AI_SEARCH_ENDPOINT value>"                                                              $token = az account get-access-token --resm --query accessToken -o tsv
+Invoke-RestMethod -Uri "$searchEndpoint/indexes?api-version=2024-07-01" -Headers @{ Authorization = "Bearer $token" }
