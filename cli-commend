@@ -59,3 +59,19 @@ Invoke-RestMethod -Uri "$appUrl/query/payload" -Method POST -Body $body -Content
   "save_docx": true,
   "instructions": null
 }
+{
+  "payload": {
+    "case_id": "CASE123",
+    "opportunity_name": "Test Opportunity",
+    "documents": {
+      "im": "CASE123/INFORMATION MEMORANDUM.docx",
+      "financial_model": "CASE123/FINANCIAL MODEL.xlsx",
+      "gdg": "CASE123/Good Deal Guide.docx",
+      "otc_template": "samples/BLANK OTC TEMPLATE.docx"
+    },
+    "include_tas": false,
+    "resume": false,
+    "save_docx": true,
+    "instructions": null
+  }
+}
