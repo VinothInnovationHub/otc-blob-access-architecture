@@ -1,6 +1,7 @@
 [System.Environment]::SetEnvironmentVariable("REQUESTS_CA_BUNDLE", "$HOME\your-cert.cer", "User")
 [System.Environment]::SetEnvironmentVariable("SSL_CERT_FILE", "$HOME\your-cert.cer", "User")
 
+python -m pip install "ai-coe-agent-patterns[api]==0.12.0" --extra-index-url https://binaryrepo.azure.nbscloud.co.uk/artifactory/api/pypi/aicoe-a3477-pypi-dev/simple
 
 Azure OpenAI / Foundry direct test (the main one — proves your model deployment/endpoint/auth are correct):
 $endpoint   = "<your AZURE_AI_PROJECT_ENDPOINT value>"
