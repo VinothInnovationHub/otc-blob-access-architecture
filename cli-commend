@@ -19,3 +19,27 @@ Invoke-RestMethod -Uri "$endpoint/openai/deployments/$deployment/chat/completion
 Azure AI Search direct test (only relevant_INDEX_BACKEND=azure_search, not local):
 $searchEndpoint = "<AI_SEARCH_ENDPOINT value>"                                                              $token = az account get-access-token --resm --query accessToken -o tsv
 Invoke-RestMethod -Uri "$searchEndpoint/indexes?api-version=2024-07-01" -Headers @{ Authorization = "Bearer $token" }
+
+
+1. Health check (do this first, confirms you can even reach it):
+$appUrl = "https://<app-name>.azurewebsites.net"
+Invoke-RestMethod -Uri "$appUrl/health" -Method GET
+
+If this hangs or times out, make sure you're actually connected to the customer VPN right now — "VNet configured" on the App Service side only helps if your own traffic is also routed into that network.
+
+2. Payload test, same shape we used locally:
+$body = @{
+    case_id          = "CASE123"
+    opportunity_name = "Deployed Test"
+    documents        = @{
+        im              = "CASE123/im.pdf"
+        financial_model = "CASE123/financial_model.xlsx"
+        gdg             = "CASE123/gdg_policy.pdf"
+        otc_template    = "samples/BLANK OTC TEMPLATE.docx"
+    }
+    include_tas = $false
+    resume      = $false
+    save_docx   = $true
+} | ConvertTo-Json -Depth 5
+
+Invoke-RestMethod -Uri "$appUrl/query/payload" -Method POST -Body $body -ContentType "application/json"
