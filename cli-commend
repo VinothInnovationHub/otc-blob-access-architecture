@@ -111,3 +111,16 @@ Click OK, then Save at the top.
 Step 4 — Restart
 
 App Service → Overview → Restart. Mount changes require a restart to actually reattach.
+
+def results_root() -> Path:
+    override = os.getenv("OTC_RESULTS_ROOT")
+    if override:
+        return Path(override).resolve()
+    return data_root() / "results"
+
+
+def index_root() -> Path:
+    override = os.getenv("OTC_INDEX_ROOT")
+    if override:
+        return Path(override).resolve()
+    return data_root() / "index"
