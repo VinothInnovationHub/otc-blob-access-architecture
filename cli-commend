@@ -75,3 +75,39 @@ Invoke-RestMethod -Uri "$appUrl/query/payload" -Method POST -Body $body -Content
     "instructions": null
   }
 }
+Step 1 — Create the Azure Files share
+
+Portal: your Storage Account → File shares (left menu, under Data storage) → + File share
+- Name: otc-uploads-files (any name — file shares and blob containers are separate namespaces, so it doesn't need to match the blob container name)
+- Tier: Transaction optimized (default is fine for this)
+- Click Create
+
+Step 2 — Copy the same documents into the new share
+
+Easiest if you already have the files locally (you can download them from the otc-uploads blob container first if needed: Storage Account → Containers → otc-uploads → select file → Download).
+
+Via Portal (simplest, few files): open the new file share → + Add directory → create CASE123, then samples, then drag-and-drop the matching files into each, using the exact same filenames as in Blob (INFORMATION MEMORANDUM.docx, FINANCIAL MODEL.xlsx, Good Deal Guide.docx, BLANK OTC TEMPLATE.docx).
+
+Via CLI, if you prefer (needs the storage account key — grab it from Storage Account → Access keys → key1, same one you already used for the mount):
+$key = "<storage-account-key>"
+az storage directory create --account-name <account> --share-name otc-uploads-files --name CASE123 --account-key $key
+az storage directory create --account-name <account> --share-name otc-uploads-files --name samples --account-key $key
+
+az storage file upload --account-name <account> --share-name otc-uploads-files --source "CASE123\INFORMATION MEMORANDUM.docx" --path "CASE123/INFORMATION MEMORANDUM.docx" --account-key $key
+az storage file upload --account-name <account> --share-name otc-uploads-files --source "CASE123\FINANCIAL MODEL.xlsx" --path "CASE123/FINANCIAL MODEL.xlsx" --account-key $key
+az storage file upload --account-name <account> --share-name otc-uploads-files --source "CASE123\Good Deal Guide.docx" --path "CASE123/Good Deal Guide.docx" --account-key $key
+az storage file upload --account-name <account> --share-name otc-uploads-files --source "samples\BLANK OTC TEMPLATE.docx" --path "samples/BLANK OTC TEMPLATE.docx" --account-key $key
+
+Step 3 — Switch the existing Storage Mount to point at the new share
+
+App Service → Configuration → Path mappings → open your existing Storage Mount entry (the one currently pointing at Blob container otc-uploads) and edit it:
+- Storage type: change from "Azure Blob Container" to Azure Files
+- Storage container/share: otc-uploads-files (the new share, not the old blob container)
+- Access key: same key as before
+- Mount path: /otc-uploads — leave this exactly as-is, unchanged
+
+Click OK, then Save at the top.
+
+Step 4 — Restart
+
+App Service → Overview → Restart. Mount changes require a restart to actually reattach.
