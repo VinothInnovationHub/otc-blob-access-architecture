@@ -124,3 +124,6 @@ def index_root() -> Path:
     if override:
         return Path(override).resolve()
     return data_root() / "index"
+
+OTC_RESULTS_ROOT = /home/otcresults
+OTC_INDEX_ROOT   = /home/otcindex
