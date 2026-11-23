@@ -1,0 +1,136 @@
+<mxfile host="app.diagrams.net" modified="2026-11-23T00:00:00.000Z" agent="claude-code" version="24.0.0" type="device">
+  <diagram name="Processing Boundary" id="scope-boundary-1">
+    <mxGraphModel dx="1400" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <!-- Eyebrow + Title -->
+        <mxCell id="eyebrow" value="ARCHITECTURE &#183; SOLUTION SCOPE" style="text;fontFamily=Courier New;fontSize=11;fontColor=#4F5D75;fontStyle=1;align=left;verticalAlign=top;spacing=0;" vertex="1" parent="1">
+          <mxGeometry x="40" y="20" width="400" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="Processing Boundary &#8212; Everything Stays Inside Microsoft 365" style="text;fontFamily=Georgia;fontSize=20;fontStyle=1;fontColor=#2D3142;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="40" y="42" width="900" height="34" as="geometry" />
+        </mxCell>
+
+        <!-- Trust boundary zone -->
+        <mxCell id="zone" value="NBS-CONTROLLED MICROSOFT 365 ENVIRONMENT" style="rounded=1;arcSize=6;dashed=1;dashPattern=8 5;strokeColor=#4F5D75;fillColor=none;verticalAlign=top;align=left;spacingLeft=16;spacingTop=8;fontFamily=Courier New;fontSize=11;fontColor=#5A6580;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="110" width="780" height="190" as="geometry" />
+        </mxCell>
+
+        <!-- Actor (outside zone) -->
+        <mxCell id="user" value="&lt;b&gt;User&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#4F5D75&quot; style=&quot;font-size:11px&quot;&gt;NBS account&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeColor=#2D3142;fillColor=#FFFFFF;fontFamily=Segoe UI;fontSize=14;align=center;verticalAlign=middle;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="40" y="155" width="110" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Microsoft Teams -->
+        <mxCell id="teams" value="&lt;b&gt;Microsoft Teams&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#4F5D75&quot; style=&quot;font-size:11px&quot;&gt;entry point&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeColor=#2D3142;fillColor=#FFFFFF;fontFamily=Segoe UI;fontSize=14;align=center;verticalAlign=middle;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="195" y="155" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="teams-tag" value="GATE" style="rounded=1;arcSize=30;strokeColor=#2D3142;fillColor=#FFFFFF;fontFamily=Courier New;fontSize=8;fontStyle=1;fontColor=#2D3142;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="205" y="163" width="46" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- OneDrive source -->
+        <mxCell id="od-src" value="&lt;b&gt;NBS OneDrive&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#4F5D75&quot; style=&quot;font-size:11px&quot;&gt;source &#8212; IM &amp;amp; GDG&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeColor=#2D3142;fillColor=#FFFFFF;fontFamily=Segoe UI;fontSize=14;align=center;verticalAlign=middle;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="385" y="155" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- AI Processing (focal) -->
+        <mxCell id="ai" value="&lt;b&gt;AI Processing&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#4F5D75&quot; style=&quot;font-size:11px&quot;&gt;extract &#183; validate&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeColor=#BF4520;fillColor=#FFFFFF;fontFamily=Segoe UI;fontSize=14;align=center;verticalAlign=middle;strokeWidth=2.5;" vertex="1" parent="1">
+          <mxGeometry x="575" y="155" width="160" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-tag" value="FOCAL" style="rounded=1;arcSize=30;strokeColor=#BF4520;fillColor=#FFFFFF;fontFamily=Courier New;fontSize=8;fontStyle=1;fontColor=#BF4520;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="585" y="163" width="50" height="16" as="geometry" />
+        </mxCell>
+
+        <!-- OneDrive destination -->
+        <mxCell id="od-dst" value="&lt;b&gt;NBS OneDrive&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#4F5D75&quot; style=&quot;font-size:11px&quot;&gt;destination &#8212; draft&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeColor=#2D3142;fillColor=#FFFFFF;fontFamily=Segoe UI;fontSize=14;align=center;verticalAlign=middle;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="775" y="155" width="150" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- Blocked / excluded systems (outside zone) -->
+        <mxCell id="ext" value="&lt;b&gt;External Third-Party Systems&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#5A6580&quot; style=&quot;font-size:11px&quot;&gt;&#10005; not connected&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeColor=#9AA3B2;fillColor=#F5F5F5;fontFamily=Segoe UI;fontSize=13;fontColor=#5A6580;align=center;verticalAlign=middle;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry x="380" y="400" width="230" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="int" value="&lt;b&gt;Nationwide Internal Data Sources&lt;/b&gt;&lt;br&gt;&lt;font color=&quot;#5A6580&quot; style=&quot;font-size:11px&quot;&gt;&#10005; not accessed&lt;/font&gt;" style="rounded=1;arcSize=12;whiteSpace=wrap;html=1;strokeColor=#9AA3B2;fillColor=#F5F5F5;fontFamily=Segoe UI;fontSize=13;fontColor=#5A6580;align=center;verticalAlign=middle;strokeWidth=1.2;" vertex="1" parent="1">
+          <mxGeometry x="650" y="400" width="230" height="68" as="geometry" />
+        </mxCell>
+
+        <!-- Permitted flow edges -->
+        <mxCell id="e1" value="SIGN-IN" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#2D3142;strokeWidth=2;fontFamily=Courier New;fontSize=9;fontColor=#5A6580;labelBackgroundColor=#F5F5F5;endArrow=block;endFill=1;" edge="1" parent="1" source="user" target="teams">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="IN" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4F5D75;strokeWidth=1.5;fontFamily=Courier New;fontSize=9;fontColor=#5A6580;labelBackgroundColor=#F5F5F5;endArrow=block;endFill=1;" edge="1" parent="1" source="teams" target="od-src">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="READ" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#4F5D75;strokeWidth=1.5;fontFamily=Courier New;fontSize=9;fontColor=#5A6580;labelBackgroundColor=#F5F5F5;endArrow=block;endFill=1;" edge="1" parent="1" source="od-src" target="ai">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="OUT" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#BF4520;strokeWidth=2.5;fontFamily=Courier New;fontSize=9;fontColor=#BF4520;labelBackgroundColor=#F5F5F5;endArrow=block;endFill=1;" edge="1" parent="1" source="ai" target="od-dst">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Blocked paths: dangling dashed edges stopping at the boundary -->
+        <mxCell id="eb1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#5A6580;strokeWidth=1.5;dashed=1;dashPattern=4 3;endArrow=cross;endFill=0;exitX=0.35;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ai">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="625" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eb2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#5A6580;strokeWidth=1.5;dashed=1;dashPattern=4 3;endArrow=cross;endFill=0;exitX=0.65;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="ai">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="685" y="330" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="blocked-label" value="NO DATA EXCHANGE" style="text;fontFamily=Courier New;fontSize=11;fontStyle=1;fontColor=#5A6580;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="525" y="340" width="260" height="20" as="geometry" />
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="legend-line" style="endArrow=none;html=1;strokeColor=#DCD6C8;strokeWidth=1;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="40" y="500" as="sourcePoint" />
+            <mxPoint x="950" y="500" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg-title" value="LEGEND" style="text;fontFamily=Courier New;fontSize=10;fontStyle=1;fontColor=#4F5D75;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="40" y="512" width="80" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg1" style="endArrow=none;html=1;strokeColor=#4F5D75;strokeWidth=2;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="522" as="sourcePoint" />
+            <mxPoint x="180" y="522" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg1-t" value="Permitted data flow" style="text;fontFamily=Courier New;fontSize=10;fontColor=#5A6580;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="188" y="512" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg2" style="endArrow=none;html=1;strokeColor=#BF4520;strokeWidth=2.5;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="370" y="522" as="sourcePoint" />
+            <mxPoint x="400" y="522" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg2-t" value="Primary output" style="text;fontFamily=Courier New;fontSize=10;fontColor=#5A6580;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="408" y="512" width="140" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg3" style="endArrow=cross;endFill=0;html=1;strokeColor=#5A6580;strokeWidth=1.5;dashed=1;dashPattern=4 3;" edge="1" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="570" y="522" as="sourcePoint" />
+            <mxPoint x="605" y="522" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leg3-t" value="Blocked &#8212; no route" style="text;fontFamily=Courier New;fontSize=10;fontColor=#5A6580;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="613" y="512" width="160" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4" value="" style="rounded=1;arcSize=6;dashed=1;dashPattern=8 5;strokeColor=#4F5D75;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="800" y="516" width="26" height="14" as="geometry" />
+        </mxCell>
+        <mxCell id="leg4-t" value="Trust boundary" style="text;fontFamily=Courier New;fontSize=10;fontColor=#5A6580;align=left;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry x="834" y="512" width="140" height="20" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
