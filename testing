@@ -1,0 +1,53 @@
+
+Neither "calls" anything automatically — your code (otc_workflow.py) decides the order, and it's actually both, at different points in the same request:
+
+1. Blob (read, via mount)         <- App Service code opens the file
+2. Azure AI Search (WRITE)        <- App Service code chunks+embeds+uploads
+       (this is the ingestion step — happens FIRST, before any LLM call)
+3. Azure AI Search (READ)         <- App Service code queries for relevant chunks
+4. Foundry (chat completion)      <- App Service code sends those chunks + a
+                                      prompt, gets back extracted/drafted text
+5. repeat steps 3-4 for every extraction/GDG/drafting step
+
+So within one request: Search gets called twice (once to index, many times to retrieve), Foundry gets called once per extraction/analysis/drafting step. Blob is read once up front. There's no single "it calls Foundry or Search" moment — it's a sequence your code drives.
+
+Question 2 — does Foundry call Search itself, or is it all App Service?
+
+100% App Service. This is the important part to get right: Azure AI Foundry does have a real, separate feature — "Agent Service" with a built-in Azure AI Search tool — where you hand the agent a Search index and the hosted agent decides on its own, mid-conversation, when to call Search (like function-calling/tool-use). This codebase does not use that feature at all. That option was explicitly looked at and rejected earlier in this project (same reasoning as rejecting the SharePoint grounding tool — see option-otc memory).
+
+Instead, what's actually happening is a classic hand-rolled RAG pattern:
+
+App Service code:
+  1. asks Search: "give me chunks matching this query"   (plain SDK call)
+  2. takes the returned TEXT
+  3. pastes that text into a prompt string:
+       "Here is some evidence: <chunks>. Extract these fields: <...>"
+  4. sends that whole prompt to Foundry's chat endpoint    (plain SDK call)
+  5. Foundry has no idea Search exists — it just sees one big text
+     prompt and returns completion text
+
+Foundry in this design is a dumb text-in/text-out endpoint — it never sees Search, never decides to query it, never knows it's being handed RAG-retrieved context versus hand-typed text. The App Service's Python code is the only thing aware of both services, and it's the only thing that connects them — by literally string-concatenating Search's output into Foundry's input.
+
+Brewed for 26s · done 7:09 PM
+
+❯ my another app service i need to confogure search seracive manageed identity right?
+
+Yes — exactly right. Here's the concrete steps for that App Service:
+
+1. Enable Managed Identity on the App Service
+Portal → your App Service → Identity → System assigned → On → Save. (User-assigned works too if you prefer a shared identity across resources, but system-assigned is simpler for a single App Service.)
+
+2. Assign it roles on the Azure AI Search resource
+Portal → the Search service → Access control (IAM) → Add role assignment:
+- Search Service Contributor — needed for index_chunks()'s create_index()/delete_index() calls
+- Search Index Data Contributor — needed for upload_documents() and the retrieval queries
+- Assign both to: Managed identity → select your App Service's identity
+
+3. Assign it a role on the Azure OpenAI/Foundry resource too (don't forget this one — it's separate from Search)
+Portal → that Cognitive Services/AI Foundry resource → Access control (IAM) → Add role assignment → Cognitive Services OpenAI User → same App Service identity. Without this, embeddings and the chat/completion calls both fail even if Search is perfectly configured.
+
+4. App settings — leave the key out
+Set AI_SEARCH_ENDPOINT to the Search resource's URL, and don't set AI_SEARCH_API_KEY at all — its absence is what makes the code take the DefaultAzureCredential() branch instead of the key branch. Same pattern for OTC_AOAI_ENDPOINT (no key setting exists for that one in what we've seen — it's AAD-only already).
+
+5. No code/SDK config needed beyond that
+DefaultAzureCredential running inside App Service automatically discovers and uses whichever managed identity you enabled in step 1 — Azure injects the identity endpoint/token plumbing into the App Service environment for you. Nothing to configure on the code side once the identity exists and has the roles.
