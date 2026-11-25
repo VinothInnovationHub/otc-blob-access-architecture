@@ -127,3 +127,6 @@ def index_root() -> Path:
 
 OTC_RESULTS_ROOT = /home/otcresults
 OTC_INDEX_ROOT   = /home/otcindex
+curl -X GET "https://your-search-service.search.windows.net/indexes?api-version=2026-04-01" \
+  -H "api-key: your-admin-or-query-api-key" \
+  -H "Content-Type: application/json"
